@@ -1,0 +1,73 @@
+<section>
+    <div class="container mt-5">
+        <form action="/order" id="checkout">
+            <div class="row">
+                <div class="col-md-6">
+                    <h2>Enter Delivery Details</h2><br>
+                    <div>
+                        Address
+                        <input type="text" class="form-control" name="address" id="address">
+                        Pincode
+                        <input type="text" class="form-control" name="pincode" id="pincode">
+                        Mobile
+                        <input type="text" class="form-control" name="mobile" id="mobile">
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="container mt-5 ml-5 checkout">
+                        <h5>Total : Rs.{{total}}</h5>
+                        <hr>
+                        <div class="payment">
+                            <p>Payment method</p>
+                            <label class="radio-inline">
+                                <input type="radio" name="payment-method" value="COD" checked>COD
+                            </label>
+                             <label class="radio-inline mt-2">
+                                <input type="radio" name="payment-method" value="ONLINE">Online Payment
+                            </label>
+                            <button class="btn btn-primary float-right" type="Submit">Checkout</button>
+                            <input type="text" name="userId" value="{{user._id}}"hidden>
+                            <a href="/pay" class="upi-pay1">Pay Now !</a>
+                            
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </form>
+
+    </div>
+</section>
+<script>
+    $("#checkout").submit((e)=>{
+        
+        $.ajax({
+            url:'/place-order',
+            method:'post',
+            data:$('#checkout').serialize(),
+            success:(response)=>{
+                if(response.status=='placed'){
+                    
+                }
+            }
+        })
+    })
+</script>
+<style>
+    input[type=radio]{
+        width: 20px;
+        height: 20px;
+    }
+    label.radio-inline{
+        display: flex;
+        align-items: center;
+    }
+    .checkout{
+        border: 1px solid;
+        border-radius: 3px;
+        padding: 30px;
+    }
+    .payment{
+        padding-bottom: 16px;
+    }
+</style>

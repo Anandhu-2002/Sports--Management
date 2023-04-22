@@ -1,0 +1,52 @@
+.main{
+    display: flex;
+    flex-direction: column;
+    padding-top: 70px;
+
+}
+.container{
+    margin-top: 1rem;
+    margin-inline: 5rem;
+    border: 0.01px solid black;
+    border-radius: 1rem;
+    height: 200px;
+    display: flex;
+    flex-direction: row;
+}
+.row1{
+
+    width: 60%;
+    height: 85%;
+    margin-block: 15px;
+    margin-inline: 40px;
+
+}
+.row2{
+
+    width: 30%;
+    height: 85%;
+    margin-block: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+   
+
+}
+.row2 a{
+   
+    text-decoration: none;
+    border: 3px solid rgb(9, 102, 251);
+    color: rgb(9, 102, 251);
+    padding: 15px 40px;
+    border-radius: 1.5rem;
+
+
+}
+.row2 a:hover{
+
+    color: white;
+    background-color:rgb(9, 102, 251) ;
+
+
+}

@@ -1,0 +1,42 @@
+<link rel='stylesheet' href='/stylesheets/style.css' />
+      <div class="login-box">
+        {{#if eror}}
+           <h2>Invalid email or password</h2>
+        {{else}}
+        <h2>User Login</h2>
+        {{/if}}
+        
+    <form action="/userlog" method="post">
+      <div class="user-box">
+        <input type="text" name="Email" required>
+        <label>Email</label>
+      </div>
+      <div class="user-box">
+        <input type="password" name="Password" required>
+        <label>Password</label>
+      </div>
+      <button type="submit">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        login
+      </button> 
+        <a href="/userreg">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        Create an account</a>    
+
+
+        <a href="/firstpage">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+          BACK</a>  
+      </form>
+    </div>
+  </body>
+</html>

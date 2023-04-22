@@ -1,0 +1,141 @@
+body{
+    background-color:#ffffff;
+}
+.hdiv {
+    position: fixed;
+}
+
+section div table td{
+    
+    background-color: #00000052;
+}
+section div table th{
+    background-color: #000000;
+}
+.footercol{
+    background-color:#142850;
+    color: rgb(250, 250, 250);
+    margin-top: 100%;
+    
+}
+.nav__menu {
+  position: absolute;
+  background-color: #142850;
+  width: 100%;
+  
+}
+.text{
+    color: white;
+}
+.btncol{
+    background-color: #3282b8;
+            color: white;
+            
+}
+.btncol:hover{
+    background: transparent;
+    border-color: #3282b8;
+    color:#3282b8;
+}
+.bbtncol{
+  background-color: #04273a;
+          color: white;
+          
+}
+.bbtncol:hover{
+  background: transparent;
+  border-color: blueviolet;
+  color:blueviolet;
+}
+.divcol{
+    background-color:#ffffff;
+    color: rgb(17, 16, 16);
+    border-style: solid;
+    
+    border-radius: 15px;
+    border-width: 1px;
+} 
+
+/*   Start global   */
+
+* {
+  padding: 0;
+  margin: 0;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  text-decoration: none;
+  font-family: arial, tahoma;
+  list-style: none;
+  /*    outline: 1px solid brown;*/
+}
+
+/*   End global   */
+
+
+
+header {
+  background-color: #333;
+  height: 50px;
+}
+
+/*   Start navigation bar   */
+
+nav {
+  height: 80px;
+  background-color: #222;
+  border-bottom: 1px solid #555
+}
+.logo {
+  padding: 10px;
+  width: auto;
+  float: left;
+}
+.logo img {
+  height: 55px;
+}
+.list-item {
+  float: right;
+  margin-right: 25px;
+  margin-top: 17px;
+}
+.list-item li {
+  float: left;
+  padding: 13px 13px;
+  font-size: 18px;
+  border-radius: 3px;
+  transition: all .7s ease-in-out;
+}
+.list-item li a {
+  color: #EEE;
+}
+.list-item li:hover {
+  background-color: brown;
+}
+
+/*   End navigation bar   */
+
+
+
+
+
+/*   Start nav bar for small screens   */
+
+.icon {
+  display: none;
+}
+.toggle {
+  float: right;
+  margin: 20px;
+  color: #EEE;
+  font-size: 30px;
+  border: 1px solid #EEE;
+  padding: 0px 5px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+/*   End nav bar for small screens   */
+
+/*   Start media query   */
+

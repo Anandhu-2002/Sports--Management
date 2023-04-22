@@ -1,0 +1,79 @@
+<link rel='stylesheet' href='/stylesheets/header.css' />
+<header>
+    <nav class="navbar navbar-expand-lg ">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03"
+            aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <a class="navbar-brand text" href="/home">Home</a>
+
+        <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+            <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+                
+                <li class="nav-item">
+                    <a class="nav-link text" href="/cart">Cart<span class="badge badge-info"
+                            id="cart-count">{{this.cartCount}}</span></a>
+                </li>
+                
+                {{#if user}}
+                <li class="nav-item">
+                    <a class="nav-link text" href="/order">Orders</a>
+                </li>
+                
+
+
+
+                {{/if}}
+
+
+            </ul>
+            
+        </div>
+    </nav>
+</header>
+<section>
+    
+        <div class="container mt-5">
+            <div class="row">
+                {{#each products}}
+                <div class="col-md-3 p-3 ">
+                    <div class="card divcol" style="width: 15rem;height:30rem">
+                        <img class="card-img-top"
+                            src="/product-img/{{this._id}}.jpg"
+                            alt="Card image cap" style="height:14rem;width:14rem;" >
+                        <div class="card-body ">
+                            <h5 class="card-title">{{this.Name}}</h5>
+                            <p class="card-text">Rs.{{this.Price}}</p>
+                            <p class="card-text">{{this.Category}}</p>
+                            <p class="card-text">{{this.Description}}</p>
+                            <button onclick="addToCart('{{this._id}}','{{this.Price}}')"  class="btn bbtncol">Add To Cart</button>
+                        </div>
+                    </div>
+                </div>
+                {{/each}}
+
+           </div>
+        </div>
+</section>
+<script>
+    function addToCart(proid){
+       
+    $.ajax({
+        url:'/add-to-cart/'+proid,
+        method:'get',
+        success:(response)=>{
+            if(response.addPro){
+                let count = $('#cart-count').html()
+                        count = parseInt(count)+1
+                        $('#cart-count').html(count)
+                
+
+            }
+           
+        }
+    })
+}
+</script>
+
+
+

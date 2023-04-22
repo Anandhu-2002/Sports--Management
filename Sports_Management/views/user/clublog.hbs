@@ -1,0 +1,44 @@
+<link rel='stylesheet' href='/stylesheets/style.css' />
+      <div class="login-box">
+        {{#if eror}}
+        <h2>Invalid Club name or password</h2>
+        {{else}}
+         <h2>Club Login</h2>
+        {{/if}}
+       
+    <form action="/clublog" method="post">
+      <div class="user-box">
+        <input type="text" name="Email" required="">
+        <label>Email id</label>
+      </div>
+      <div class="user-box">
+        <input type="password" name="Password" required="">
+        <label>Password</label>
+      </div>
+      <button type="submit">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        Login
+      </button> 
+     
+        
+          <a href="/clubreg">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+          Create an account</a>    
+
+
+          <a href="/">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+          BACK</a>  
+      </form>
+    </div>
+  </body>
+</html>
