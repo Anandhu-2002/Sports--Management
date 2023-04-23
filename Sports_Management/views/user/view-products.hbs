@@ -63,9 +63,9 @@
         method:'get',
         success:(response)=>{
             if(response.addPro){
-                let count = $('#cart-count').html()
+                let count = document.getElementById('cart-count').innerHTML
                         count = parseInt(count)+1
-                        $('#cart-count').html(count)
+                       document.getElementById('cart-count').innerHTML=count
                 
 
             }

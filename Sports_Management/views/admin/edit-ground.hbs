@@ -1,0 +1,33 @@
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <h2 class="text-center">Edit Ground</h2>
+                <form action="/admin/edit-ground/{{details._id}}" method="POST">
+                    Ground-Name
+                    <input type="text" name="Name" class="form-control" value="{{details.GroundName}}">
+                    
+                    Address
+                    <input type="text" name="Address" class="form-control" value="{{details.GroundAddress}}">
+                    
+                    District
+                    <input type="text" name="District" class="form-control" value="{{details.District}}">
+
+                    Sub-District
+                    <input type="text" name="SubDistrict" class="form-control" value="{{details.SubDistrict}}">
+                    
+                    Pincode
+                    <input type="text" name="Pincode" class="form-control" value="{{details.Pincode}}">
+
+                    Contact-Number
+                    <input type="text" name="ContactNumber" class="form-control" value="{{details.ContactNumber}}">
+
+                    <button type="submit" class="btn btn-success mt-4">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+<script>
+
+</script>

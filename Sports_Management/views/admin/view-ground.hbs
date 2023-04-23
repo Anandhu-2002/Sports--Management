@@ -1,0 +1,45 @@
+<section>
+  <div class="container">
+    <div class="row mt-4">
+      <a href="/admin/add-ground" class="btn btn-success ml-auto">Add Ground</a>
+    </div>
+    
+    <table class="table mt-5">
+      <thead>
+        <tr>
+
+          
+          <th scope="col"><span class="text">Ground Name</span></th>
+          <th scope="col"><span class="text">Address</span></th>
+          <th scope="col"><span class="text">District</span></th>
+          <th scope="col"><span class="text">Sub-District</span></th>
+          <th scope="col"><span class="text">Pincode</span></th>
+          <th scope="col"><span class="text">Contact Number</span></th>
+          <th scope="col"><span class="text">Edit</span></th>
+          <th scope="col"><span class="text">Delete</span></th>
+
+        </tr>
+      </thead>
+      <tbody>
+        {{#each Grounddetails}}
+
+        <tr>
+
+          
+          <td><span class="text">{{this.GroundName}}</span></td>
+          <td><span class="text">{{this.GroundAddress}}</span></td>
+          <td><span class="text">{{this.District}}</span></td>
+          <td><span class="text">{{this.SubDistrict}}</span></td>
+          <td><span class="text">{{this.Pincode}}</span></td>
+          <td><span class="text">{{this.ContactNumber}}</span></td>
+          <td><a href="/admin/edit-ground/{{this._id}}" class="btn btn-primary">Edit</a></td>
+          <td><a href="/admin/delete-ground/{{this._id}}" class="btn btn-danger"
+              onclick="return confirm('Are you want to delete {{this.Ground-Name}} ?')">Delete</a></td>
+        </tr>
+        {{/each}}
+
+      </tbody>
+    </table>
+  </div>
+
+</section>
