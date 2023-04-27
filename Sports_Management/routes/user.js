@@ -38,12 +38,16 @@ router.post('/clublog',(req,res)=>{
       
       req.session.user = response.user
       req.session.userLoggedIn = true
-      res.redirect('/home')
+      res.redirect('/clubhome')
     } else {
       eror=req.session.userLoginErr =true
       res.render('user/clublog',{eror})
     }
   })
+})
+router.get('/clubhome',(req,res)=>{
+
+  res.render('user/club_home')
 })
 router.get('/clubreg',(req,res)=>{
   res.render('user/clubreg')
@@ -218,7 +222,38 @@ router.get('/view-order-products/:id',verifyLogin,async(req,res)=>{
   res.render('user/view-orderd-product',{orderItem,user:req.session.user})
 });
 
+/////////////////////////////////////////////////////////////
 
-
-
+router.get('/grounddetails',verifyLogin,async(req,res)=>{
+  let ground=await userHelpers.getGround()
+  
+  res.render('user/ground',{ground})
+});
+router.get('/bookground/:uid',verifyLogin,async(req,res)=>{
+  
+  res.render('user/bookground',{ground:req.params.uid})
+});
+router.post('/bookground/:gid',verifyLogin,async(req,res)=>{
+  let cid=req.session.user._id
+  let ground=await userHelpers.getGrounddet(req.params.gid)
+  await userHelpers.bookGround(req.body,ground,cid)
+  
+  res.redirect('/clubhome')
+});
+router.get('/bookedground',verifyLogin,async(req,res)=>{
+  let cid=req.session.user._id
+  let ground=await userHelpers.getbooking(cid)
+  
+  
+res.render('user/bookings',{ground})
+});
+router.get('/remove-ground/:id',async(req,res)=>{
+  userHelpers.removeGround(req.params.id).then(()=>{
+    res.redirect('/bookedground')
+  })
+});
+router.get('/view-ground/:id',verifyLogin,async(req,res)=>{
+  let orderground=await userHelpers.getBookedground(req.params.id)
+  res.render('user/view-booked-ground',{orderground})
+});
 module.exports = router;

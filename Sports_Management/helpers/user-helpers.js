@@ -502,5 +502,120 @@ Userlogin:(userData)=>{
 
         })
     },
+    getGround:()=>{
+
+
+        return new Promise(async(resolve,reject)=>{
+            
+           
+            
+            let ground=await db.get().collection(collections.GROUND_COLLECTION).find().toArray()
+            
+            resolve(ground)
+
+
+        })
+    },
+getGrounddet:(gid)=>{
+
+
+        return new Promise(async(resolve,reject)=>{
+            
+           
+            
+            let ground=await db.get().collection(collections.GROUND_COLLECTION).findOne({_id:objectId(gid)})          
+            resolve(ground)
+
+
+        })
+    },
+
+    bookGround:(clubdet,ground,cid)=>{
+    
+
+
+        return new Promise(async(resolve,reject)=>{
+            
+            let  bookingdet={
+                matchDetails:{
+                    team1:clubdet.team1,
+                    team2:clubdet.team2,
+                    date:clubdet.date,
+                    start:clubdet.start,
+                    end:clubdet.end,
+                    category:clubdet.category
+                },
+                clubId:objectId(cid),
+                ground:ground,
+            }
+            db.get().collection(collections.GROUNDBOOKING_COLLECTION).insertOne(bookingdet).then((response)=>{
+                
+                resolve(response.insertedId)
+                
+            })
+        })
+    },
    
+    getbooking:(cid)=>{
+
+
+        return new Promise(async(resolve,reject)=>{
+            
+           
+            
+            let booking=await db.get().collection(collections.GROUNDBOOKING_COLLECTION).find({clubId:objectId(cid)}).toArray()
+            
+            resolve(booking)
+
+
+        })
+    },
+    removeGround:(Id)=>{
+        return new Promise(async(resolve,reject)=>{
+            db.get().collection(collections.GROUNDBOOKING_COLLECTION).deleteOne({_id:objectId(Id)}).then((response)=>{
+                resolve()
+                
+        })
+
+
+        })
+    },
+    getBookedground:(gid)=>{
+        return new Promise(async(resolve,reject)=>{
+            let orderItems=await db.get().collection(collections.GROUNDBOOKING_COLLECTION).aggregate([
+                {
+                    $match:{_id:objectId(gid)}
+                },
+                {
+                    $unwind:'$ground'
+                },
+                {
+                    $project:{
+                        ground:'$ground._id',
+                      
+                        
+                    }
+                },
+                {
+                    $lookup:{
+                        from:collections.GROUND_COLLECTION,
+                        localField:'ground',
+                        foreignField:'_id',
+                        as:'ground'
+                    }
+                },
+                {
+                    $project:{
+                        ground:1,
+                        grounds:{$arrayElemAt:['$ground',0]}
+                    }
+                }
+
+            ]).toArray()
+           
+            resolve(orderItems)
+
+
+        })
+    },
 }

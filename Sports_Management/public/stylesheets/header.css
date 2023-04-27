@@ -4,7 +4,9 @@ body{
 .hdiv {
     position: fixed;
 }
-
+.nav-link{
+  color: white              ;
+}
 section div table td{
     
     background-color: #00000052;
@@ -38,14 +40,14 @@ section div table th{
     color:#3282b8;
 }
 .bbtncol{
-  background-color: #04273a;
+  background-color: #0640ff;
           color: white;
           
 }
 .bbtncol:hover{
+  border: 1px solid  #0640ff;
   background: transparent;
-  border-color: blueviolet;
-  color:blueviolet;
+  color: #0640ff;
 }
 .divcol{
     background-color:#ffffff;
@@ -75,7 +77,7 @@ section div table th{
 
 
 header {
-  background-color: #333;
+  background-color: #0080ff;
   height: 50px;
 }
 
@@ -83,8 +85,8 @@ header {
 
 nav {
   height: 80px;
-  background-color: #222;
-  border-bottom: 1px solid #555
+  background-color: #0080ff;
+  border-bottom: 1px solid #080101
 }
 .logo {
   padding: 10px;

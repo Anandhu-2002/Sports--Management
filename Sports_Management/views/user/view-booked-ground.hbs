@@ -1,0 +1,32 @@
+<section>
+    <link rel='stylesheet' href='/stylesheets/events.css' />
+{{#each orderground}}
+    <div class="main">
+        <div class="container">
+            <div class="row1">
+             <div>
+                     <span>Name:{{this.grounds.GroundName}}</span>
+                </div>
+                <div>
+                    <span>Address:{{this.grounds.GroundAddress}}</span>
+                </div>
+                <div>
+                    <span>District:{{this.grounds.District}}</span>
+                </div>
+                <div>
+                    <span>SubDistrict:{{this.grounds.SubDistrict}}</span>
+                </div>
+                 <div>
+                    <span>Pincode:{{this.grounds.Pincode}}</span>
+                </div>
+                <div>
+                    <span>ContactNumber:{{this.grounds.Contact}}</span>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+{{/each}}
+</section>
+   

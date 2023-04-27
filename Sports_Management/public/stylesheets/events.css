@@ -1,5 +1,6 @@
 .main{
     display: flex;
+    align-items: center;
     flex-direction: column;
     padding-top: 70px;
 
@@ -9,20 +10,26 @@
     margin-inline: 5rem;
     border: 0.01px solid black;
     border-radius: 1rem;
+    width: 60vw;
     height: 200px;
     display: flex;
     flex-direction: row;
 }
 .row1{
-
     width: 60%;
     height: 85%;
     margin-block: 15px;
     margin-inline: 40px;
+    display:flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    gap: 6px;
 
 }
+.row1 div{
+    flex: 1 0 40px;
+}
 .row2{
-
     width: 30%;
     height: 85%;
     margin-block: 15px;
