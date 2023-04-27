@@ -137,9 +137,9 @@ router.post('/userreg',async(req,res)=>{
 })
 /////////////////////////////////////////
 
-router.get('/home',verifyLogin,(req,res)=>{
-  let user=req.session.user
-  res.render('user/home',{user})
+router.get('/home',verifyLogin,async(req,res)=>{
+  let events=await userHelpers.events()
+  res.render('user/home',{events})
 })
 /////////////////////////////////////////////////////
 router.get('/shopping',async(req, res)=> {
@@ -255,5 +255,21 @@ router.get('/remove-ground/:id',async(req,res)=>{
 router.get('/view-ground/:id',verifyLogin,async(req,res)=>{
   let orderground=await userHelpers.getBookedground(req.params.id)
   res.render('user/view-booked-ground',{orderground})
+});
+//////////////////////////////////////////////////////////////
+router.get('/booktickets/:id',verifyLogin,async(req,res)=>{
+  let mid=req.params.id
+  res.render('user/ticketbooking',{user:req.session.user,mid})
+});
+router.post('/booktickets/:id',verifyLogin,async(req,res)=>{
+  let matchID=req.params.id
+  await userHelpers.bookTicket(req.body,matchID,req.session.user._id)
+  res.redirect('/home')
+  
+});
+router.get('/viewticketbookings',verifyLogin,async(req,res)=>{
+  let bookings=await userHelpers.getticketbooking(req.session.user._id)
+  console.log(bookings);
+  res.render('user/matchbookings')
 });
 module.exports = router;

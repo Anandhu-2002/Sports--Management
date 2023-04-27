@@ -12,7 +12,9 @@
                 <li class="nav-item active">
                     <a class="nav-link text" href="/shopping">Go to sports Items<span class="sr-only"></span></a>
                 </li>
-                
+                <li class="nav-item active">
+                    <a class="nav-link text" href="/viewticketbookings">Booked Matchs<span class="sr-only"></span></a>
+                </li>
             </ul>
             
         </div>
@@ -20,14 +22,34 @@
 </header>
     <link rel='stylesheet' href='/stylesheets/events.css' />
     <div class="main">
+    {{#each events}}
         <div class="container">
+            
             <div class="row1">
-                
+                <div>
+                     <h4>{{this.matchDetails.category}}</h4>
+                </div>
+                <div>
+                     <span>Match:{{this.matchDetails.team1}} vs {{this.matchDetails.team2}}</span>
+                </div>
+                <div>
+                    <span>Venu:{{this.ground.GroundName}}</span>
+                </div>
+                <div>
+                    <span>Location:{{this.ground.GroundAddress}}</span>
+                </div>
+                <div>
+                    <span>Date:{{this.matchDetails.date}}</span>
+                </div>
+                <div>
+                    <span>Time:{{this.matchDetails.start}}to{{this.matchDetails.end}}</span>
+                </div>
             </div>
             <div class="row2">
-                <a href="" >Book Tickets</a>
+                <a href="/booktickets/{{this._id}}" >Book Tickets</a>
             </div>
         </div>
+    {{/each}}
 
     </div>
 </section>

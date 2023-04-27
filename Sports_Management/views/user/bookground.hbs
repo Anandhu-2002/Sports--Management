@@ -15,7 +15,7 @@
             </div>
             <div class="row">
                 <div class="row1">
-                    <input type="date" name="date">
+                    <input type="date" name="date" id="book-date" >
                     <label>Date</label>
                 </div>
                 <div class="row1">
@@ -29,7 +29,7 @@
                     <label>Ending Time</label>
                 </div>
                 <div class="row1">
-                    <input type="category" name="det">
+                    <input type="text" name="category">
                     <label>Match Catagory</label>
                 </div>
                
@@ -40,4 +40,23 @@
         </div>
     </div>
 </form>
+<script>
+    var currentDateTime = new Date();
+var year = currentDateTime.getFullYear();
+var month = (currentDateTime.getMonth() + 1);
+var date = (currentDateTime.getDate() + 1);
+
+if(date < 10) {
+  date = '0' + date;
+}
+if(month < 10) {
+  month = '0' + month;
+}
+
+var dateTomorrow = year + "-" + month + "-" + date;
+var bookdate = document.querySelector("#book-date");
+
+
+bookdate.setAttribute("min", dateTomorrow);
+</script>
 </section>

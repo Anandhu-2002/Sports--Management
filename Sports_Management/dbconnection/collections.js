@@ -8,4 +8,5 @@ module.exports={
     ORDER_COLLECTION:'order',
     GROUND_COLLECTION:'grounds',
     GROUNDBOOKING_COLLECTION:'groundbooking', 
+    TICKETBOOKING_COLLECTION:'ticketbooking', 
 }

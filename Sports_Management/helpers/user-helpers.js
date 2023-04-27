@@ -530,7 +530,7 @@ getGrounddet:(gid)=>{
         })
     },
 
-    bookGround:(clubdet,ground,cid)=>{
+    bookGround:(det,ground,cid)=>{
     
 
 
@@ -538,12 +538,12 @@ getGrounddet:(gid)=>{
             
             let  bookingdet={
                 matchDetails:{
-                    team1:clubdet.team1,
-                    team2:clubdet.team2,
-                    date:clubdet.date,
-                    start:clubdet.start,
-                    end:clubdet.end,
-                    category:clubdet.category
+                    team1:det.team1,
+                    team2:det.team2,
+                    date:det.date,
+                    child:det.child,
+                    end:det.end,
+                    category:det.category
                 },
                 clubId:objectId(cid),
                 ground:ground,
@@ -580,40 +580,58 @@ getGrounddet:(gid)=>{
 
         })
     },
-    getBookedground:(gid)=>{
+    events:()=>{
         return new Promise(async(resolve,reject)=>{
-            let orderItems=await db.get().collection(collections.GROUNDBOOKING_COLLECTION).aggregate([
-                {
-                    $match:{_id:objectId(gid)}
-                },
-                {
-                    $unwind:'$ground'
-                },
-                {
-                    $project:{
-                        ground:'$ground._id',
-                      
-                        
-                    }
-                },
-                {
-                    $lookup:{
-                        from:collections.GROUND_COLLECTION,
-                        localField:'ground',
-                        foreignField:'_id',
-                        as:'ground'
-                    }
-                },
-                {
-                    $project:{
-                        ground:1,
-                        grounds:{$arrayElemAt:['$ground',0]}
-                    }
-                }
+            let allevents=await db.get().collection(collections.GROUNDBOOKING_COLLECTION).find().toArray()
+            resolve(allevents)
 
-            ]).toArray()
+
+        })
+    },
+    findMatch:(mid)=>{
+        return new Promise(async(resolve,reject)=>{
+             let allevents=await db.get().collection(collections.GROUNDBOOKING_COLLECTION).findOne({_id:mid})
+            resolve(allevents)
+
+
+        })
+    },
+    bookTicket:(det,match,uid)=>{
+    
+
+
+        return new Promise(async(resolve,reject)=>{
+            
+            let  bookingdet={
+                userDetails:{
+                    Name:det.name,
+                    Email:det.email,
+                    Adults:det.adults,
+                    Children:det.children,
+                    Preference:det.preference,
+                },
+                user:uid,
+                matchDetails:match,
+            }
+            db.get().collection(collections.TICKETBOOKING_COLLECTION).insertOne(bookingdet).then((response)=>{
+                
+                resolve(response.insertedId)
+                
+            })
+        })
+    },
+    getticketbooking:(uid)=>{
+
+
+        return new Promise(async(resolve,reject)=>{
+            
            
-            resolve(orderItems)
+            
+            let booking=await db.get().collection(collections.TICKETBOOKING_COLLECTION).findOne({user:uid})
+            
+            let match=await db.get().collection(collections.GROUNDBOOKING_COLLECTION).findOne({_id:objectId(booking.matchDetails)})
+            console.log(match);
+            resolve({booking,match})
 
 
         })
