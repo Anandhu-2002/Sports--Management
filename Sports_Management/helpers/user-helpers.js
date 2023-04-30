@@ -11,15 +11,29 @@ module.exports={
 
         return new Promise(async(resolve,reject)=>{
             
-            
-            db.get().collection(collections.CLUB_COLLECTION).insertOne(userData).then((data)=>{
+            let email=await  db.get().collection(collections.CLUB_COLLECTION).findOne({Email:userData.Email})
+            if(email){
+                db.get().collection(collections.CLUB_COLLECTION).updateOne({Email:userData.Email},{
+                    $set:{Password:userData.Password}
+                }).then((data)=>{
            
-              resolve()
-
-                
-
-                                
-            })
+                    resolve()
+      
+                      
+      
+                                      
+                  })
+            }else{
+                db.get().collection(collections.CLUB_COLLECTION).insertOne(userData).then((data)=>{
+           
+                    resolve()
+      
+                      
+      
+                                      
+                  })
+            }
+            
             
         })
         
@@ -53,16 +67,31 @@ module.exports={
     userData.Password=await bcrypt.hash(userData.Password,10)
 
       return new Promise(async(resolve,reject)=>{
+        let email=await  db.get().collection(collections.COACH_COLLECTION).findOne({Email:userData.Email})
+            if(email){
+                db.get().collection(collections.COACH_COLLECTION).updateOne({Email:userData.Email},{
+                    $set:{Password:userData.Password}
+                }).then((data)=>{
+           
+                    resolve()
+      
+                      
+      
+                                      
+                  })
+            }else{
+                db.get().collection(collections.COACH_COLLECTION).insertOne(userData).then((data)=>{
+           
+                    resolve()
+      
+                      
+      
+                                      
+                  })
+            }
           
           
-          db.get().collection(collections.COACH_COLLECTION).insertOne(userData).then((data)=>{
-         
-            resolve()
 
-              
-
-                              
-          })
           
       })
       
@@ -77,7 +106,7 @@ module.exports={
             bcrypt.compare(userData.Password,user.Password).then((status)=>{
                 if(status){
                     response.user=user
-                    response.status=true;
+                    response.status=true
                     resolve(response)
                 }
                 else{
@@ -96,16 +125,30 @@ Playerreg:async(userData)=>{
   userData.Password=await bcrypt.hash(userData.Password,10)
 
     return new Promise(async(resolve,reject)=>{
+        let email=await  db.get().collection(collections.PLAYER_COLLECTION).findOne({Email:userData.Email})
+            if(email){
+                db.get().collection(collections.PLAYER_COLLECTION).updateOne({Email:userData.Email},{
+                    $set:{Password:userData.Password}
+                }).then((data)=>{
+           
+                    resolve()
+      
+                      
+      
+                                      
+                  })
+            }else{
+                db.get().collection(collections.PLAYER_COLLECTION).insertOne(userData).then((data)=>{
+           
+                    resolve()
+      
+                      
+      
+                                      
+                  })
+            }
         
         
-        db.get().collection(collections.PLAYER_COLLECTION).insertOne(userData).then((data)=>{
-       
-          resolve()
-
-            
-
-                            
-        })
         
     })
     
@@ -140,15 +183,29 @@ Userreg:async(userData)=>{
 
     return new Promise(async(resolve,reject)=>{
         
+        let email=await  db.get().collection(collections.USER_COLLECTION).findOne({Email:userData.Email})
+            if(email){
+                db.get().collection(collections.USER_COLLECTION).updateOne({Email:userData.Email},{
+                    $set:{Password:userData.Password}
+                }).then((data)=>{
+           
+                    resolve()
+      
+                      
+      
+                                      
+                  })
+            }else{
+                db.get().collection(collections.USER_COLLECTION).insertOne(userData).then((data)=>{
+           
+                    resolve()
+      
+                      
+      
+                                      
+                  })
+            }
         
-        db.get().collection(collections.USER_COLLECTION).insertOne(userData).then((data)=>{
-       
-          resolve()
-
-            
-
-                            
-        })
         
     })
     
@@ -630,7 +687,7 @@ getGrounddet:(gid)=>{
             let booking=await db.get().collection(collections.TICKETBOOKING_COLLECTION).findOne({user:uid})
             
             let match=await db.get().collection(collections.GROUNDBOOKING_COLLECTION).findOne({_id:objectId(booking.matchDetails)})
-            console.log(match);
+          
             resolve({booking,match})
 
 

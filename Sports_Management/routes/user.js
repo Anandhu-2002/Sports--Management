@@ -1,5 +1,4 @@
 var express = require('express');
-const { generate } = require('otp-generator');
 var router = express.Router();
 var userHelpers=require('../helpers/user-helpers');
 var product=require('../helpers/products');
@@ -269,7 +268,7 @@ router.post('/booktickets/:id',verifyLogin,async(req,res)=>{
 });
 router.get('/viewticketbookings',verifyLogin,async(req,res)=>{
   let bookings=await userHelpers.getticketbooking(req.session.user._id)
-  console.log(bookings);
-  res.render('user/matchbookings')
+  console.log(bookings.match.matchDetails);
+  res.render('user/matchbookings',{matchdet:bookings.match.matchDetails,ground:bookings.ground,user:bookings.booking.userDetails,det:bookings.booking})
 });
 module.exports = router;
