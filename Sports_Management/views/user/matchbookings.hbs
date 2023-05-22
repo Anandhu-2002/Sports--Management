@@ -10,28 +10,25 @@
                     <th scope="col"><span class="text">Venu </span></th>
                     <th scope="col"><span class="text">Location </span></th>
                     <th scope="col"><span class="text">Match </span></th>
-                    <th scope="col"><span class="text">Adults </span></th><span class="text">
+                    <th scope="col"><span class="text">Adults </span></th>
                     <th scope="col"><span class="text">Child </span></th>
                     <th scope="col"><span class="text">Cancel </span></th>
-                    <th scope="col"><span class="text">View </span></th>
                 </tr>
             </thead>
-            <tbody>                
-                {{#each det}}
+            <tbody>  
+                              
+                {{#each bookings}}
                 <tr>
                     
                     
                     <td><span class="text">{{matchdet.date}} </span></td>
-                    <td><span class="text">{{this.deliveryDetails.address}} </span></td>
-                    <td><span class="text">{{this.deliveryDetails.pincode}} </span></td>
-                    <td><span class="text">{{this.deliveryDetails.mobile}} </span></td>
-                    <td><span class="text">Rs.{{this.total}} </span></td>
-                    <td><span class="text">{{this.status}} </span></td>
-                    <td>
-                        <a href="/remove-order-products/{{this._id}}" class="btn btn-danger">Remove</a>
-                        <a href="/view-order-products/{{this._id}}" class="btn btn-primary">View Products</a>
-                        
-                    </td>
+                    <td><span class="text">{{grounddet.GroundName}} </span></td>
+                    <td><span class="text">{{grounddet.GroundAddress}} </span></td>
+                    <td><span class="text">{{matchdet.team1}} vs {{matchdet.team2}}</span></td>
+                    <td><span class="text">{{userDetails.Adults}} </span></td>
+                    <td><span class="text">{{userDetails.Children}} </span></td>
+                    <td><a href="/cancel-booking/{{this._id}}" class="btn btn-danger">Cancel</a></td>
+                    
                 </tr>
                 {{/each}}                
             </tbody>

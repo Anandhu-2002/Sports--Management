@@ -1,3 +1,6 @@
+body{
+    background-color: rgb(179, 190, 190);
+}
 .main{
     display: flex;
     align-items: center;

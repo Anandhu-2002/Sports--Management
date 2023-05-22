@@ -598,7 +598,6 @@ getGrounddet:(gid)=>{
                     team1:det.team1,
                     team2:det.team2,
                     date:det.date,
-                    child:det.child,
                     end:det.end,
                     category:det.category
                 },
@@ -658,7 +657,8 @@ getGrounddet:(gid)=>{
 
 
         return new Promise(async(resolve,reject)=>{
-            
+            let matchdet=await db.get().collection(collections.GROUNDBOOKING_COLLECTION).findOne({_id:objectId(match)})
+
             let  bookingdet={
                 userDetails:{
                     Name:det.name,
@@ -668,7 +668,8 @@ getGrounddet:(gid)=>{
                     Preference:det.preference,
                 },
                 user:uid,
-                matchDetails:match,
+                matchdet:matchdet.matchDetails,
+                grounddet:matchdet.ground
             }
             db.get().collection(collections.TICKETBOOKING_COLLECTION).insertOne(bookingdet).then((response)=>{
                 
@@ -681,14 +682,23 @@ getGrounddet:(gid)=>{
 
 
         return new Promise(async(resolve,reject)=>{
-            
-           
+
             
             let booking=await db.get().collection(collections.TICKETBOOKING_COLLECTION).findOne({user:uid})
             
-            let match=await db.get().collection(collections.GROUNDBOOKING_COLLECTION).findOne({_id:objectId(booking.matchDetails)})
+            
           
-            resolve({booking,match})
+            resolve({booking})
+
+
+        })
+    },
+    cancelBookings:(Id)=>{
+        return new Promise(async(resolve,reject)=>{
+            db.get().collection(collections.TICKETBOOKING_COLLECTION).deleteOne({_id:objectId(Id)}).then((response)=>{
+                resolve()
+                
+        })
 
 
         })
